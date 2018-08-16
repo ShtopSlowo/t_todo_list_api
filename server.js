@@ -1,5 +1,6 @@
 const express = require('express');
 const morgan = require('morgan');
+const bodyParser = require('body-parser');
 
 const db = require('./src/mongoDB');
 const { serverStartMessage } = require('./src/serverUtils');
@@ -20,6 +21,8 @@ db.connection.on('error', (err) => {
 });
 
 app.use(morgan('dev'));
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: true }));
 
 app.use('/users', userRouter);
 app.use('/todos', todosRouter);
