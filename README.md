@@ -1,3 +1,5 @@
-### Todo List Api
+# Todo-list Api
 
-working ...
+## Scripts
+**npm start** - run server
+**npm run dev** - run server for develop (with nodemon)
