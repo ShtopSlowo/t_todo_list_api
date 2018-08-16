@@ -12,4 +12,4 @@
 ``` POST users/``` - add new user.  
 ``` GET  users/:id``` - get user with ```:id```.  
 ``` DELETE users/:id``` - delete user with ```:id```.  
-```! PUT users/:id``` - update user with ```id```.  
+``` PUT users/:id``` - update user with ```id```.  
