@@ -70,7 +70,7 @@ exports.getUser = (req, res) => {
         username: findByIdResponse.username,
       });
     })
-    .catch((error) => {
+    .catch(() => {
       res.status(404).json({
         msg: 'Not Found',
       });
@@ -86,6 +86,30 @@ exports.deleteUser = (req, res) => {
       } else {
         res.status(404).json();
       }
+    })
+    .catch((error) => {
+      res.status(400).json({ error });
+    });
+};
+
+exports.updateUser = (req, res) => {
+  const { id } = req.params;
+  const { currentPassword } = req.body;
+  User.findById(id)
+    .then((findByIdReponse) => {
+      if (findByIdReponse.password !== currentPassword) {
+        res.status(401).json({ message: 'Current password is invalid' });
+        return;
+      }
+      User.findByIdAndUpdate(id, req.body)
+        .then(() => {
+          res.status(201).json({
+            message: 'User update successful',
+          });
+        })
+        .catch((error) => {
+          res.status(400).json({ error });
+        });
     })
     .catch((error) => {
       res.status(400).json({ error });
