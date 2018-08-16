@@ -1,0 +1,28 @@
+{
+  "name": "todolistapi",
+  "version": "1.0.0",
+  "description": "Simple todo list api ",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ShtopSlowo/t_todo_list_api.git"
+  },
+  "keywords": [
+    "todo",
+    "node",
+    "express"
+  ],
+  "author": "Serhiy Hlavatskyi",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/ShtopSlowo/t_todo_list_api/issues"
+  },
+  "homepage": "https://github.com/ShtopSlowo/t_todo_list_api#readme",
+  "dependencies": {
+    "body-parser": "^1.18.3",
+    "express": "^4.16.3"
+  }
+}
