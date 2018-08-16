@@ -1,0 +1,1 @@
+exports.userControler = require('./users');

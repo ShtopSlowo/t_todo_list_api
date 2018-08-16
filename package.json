@@ -24,7 +24,9 @@
   "homepage": "https://github.com/ShtopSlowo/t_todo_list_api#readme",
   "dependencies": {
     "body-parser": "^1.18.3",
+    "config": "^2.0.1",
     "express": "^4.16.3",
+    "mongoose": "^5.2.8",
     "morgan": "^1.9.0"
   },
   "devDependencies": {

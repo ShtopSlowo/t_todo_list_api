@@ -1,9 +1,10 @@
 const router = require('express').Router();
 
-router.get('/', (req, res) => {
-  res
-    .status(200)
-    .send('User route works!');
-});
+const { userControler } = require('../controlers');
+
+router.route('/')
+  .get(userControler.getAllUsers)
+  .post();
+router.post('/login');
 
 module.exports = router;
