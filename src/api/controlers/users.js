@@ -3,12 +3,17 @@ const User = require('../models/User');
 exports.getAllUsers = (req, res) => {
   User.find({})
     .select('id username password')
-    .then((response) => {
+    .then((findResponse) => {
+      const users = findResponse.map((u) => {
+        const user = {
+          id: u._id, // eslint-disable-line
+          username: u.username,
+        };
+        return user;
+      });
       res
         .status(200)
-        .json({
-          users: response,
-        });
+        .json(users);
     })
     .catch();
 };
@@ -60,12 +65,27 @@ exports.getUser = (req, res) => {
   const { id } = req.params;
   User.findById(id)
     .then((findByIdResponse) => {
-      res.status(200).json({
-        user: {
-          id: findByIdResponse._id,  // eslint-disable-line
-          username: findByIdResponse.username,
-        },
+      res.status(201).json({
+        id: findByIdResponse._id,  // eslint-disable-line
+        username: findByIdResponse.username,
       });
+    })
+    .catch((error) => {
+      res.status(404).json({
+        msg: 'Not Found',
+      });
+    });
+};
+
+exports.deleteUser = (req, res) => {
+  const { id } = req.params;
+  User.findByIdAndRemove(id)
+    .then((removeResponse) => {
+      if (removeResponse !== null) {
+        res.status(200).json({ ok: 'dad' });
+      } else {
+        res.status(404).json();
+      }
     })
     .catch((error) => {
       res.status(400).json({ error });
