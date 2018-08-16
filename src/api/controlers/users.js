@@ -48,10 +48,26 @@ exports.createUser = (req, res) => {
             res.json({ error });
           });
       } else {
-        res.json({ error: 'Not unique username' });
+        res.status(400).json({ error: 'Not unique username' });
       }
     })
     .catch((error) => {
-      res.json({ error });
+      res.status(400).json({ error });
+    });
+};
+
+exports.getUser = (req, res) => {
+  const { id } = req.params;
+  User.findById(id)
+    .then((findByIdResponse) => {
+      res.status(200).json({
+        user: {
+          id: findByIdResponse._id,  // eslint-disable-line
+          username: findByIdResponse.username,
+        },
+      });
+    })
+    .catch((error) => {
+      res.status(400).json({ error });
     });
 };
