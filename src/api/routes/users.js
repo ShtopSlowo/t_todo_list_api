@@ -4,7 +4,6 @@ const { userControler } = require('../controlers');
 
 router.route('/')
   .get(userControler.getAllUsers)
-  .post();
-router.post('/login');
+  .post(userControler.createUser);
 
 module.exports = router;
