@@ -3,17 +3,20 @@ const morgan = require('morgan');
 
 const db = require('./src/mongoDB');
 const { serverStartMessage } = require('./src/serverUtils');
-const { userRouter, todosRouter } = require('./src/routes/');
+const { userRouter, todosRouter } = require('./src/api/routes/');
+const { GREEN } = require('./src/constants/consoleColor');
 
 const PORT = process.env.PORT || 3000;
 const app = express();
 
 db.connection.on('open', () => {
-  console.info('MongoDB has been connected!');
+  // eslint-disable-next-line
+  console.log(GREEN, 'MongoDB has been connected!');
 });
 
 db.connection.on('error', (err) => {
-  console.info(err);
+  // eslint-disable-next-line
+  console.error('Error occured: ', err);
 });
 
 app.use(morgan('dev'));
